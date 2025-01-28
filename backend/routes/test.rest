@@ -1,0 +1,36 @@
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "fullName": "khara hmar",
+    "username": "mla3o",
+    "password": "baydate123",
+    "confirmPassword": "baydate123",
+    "gender": "female"
+}
+
+###
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "username": "mla3o",
+    "password": "baydate123"
+}
+
+###
+GET http://localhost:5000/auth/logout
+
+###
+POST http://localhost:5000/message/send/6793e00d1d087a639a07f99a
+Content-Type: application/json
+
+{
+    "message": "call ayre"
+}
+
+###
+GET http://localhost:5000/message/6793e00d1d087a639a07f99a
+
+###
+GET http://localhost:5000/users
