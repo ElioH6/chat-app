@@ -6,38 +6,42 @@ export const sendMessage = async (req, res) => {
         const { id: receiverId } = req.params;
         const { message } = req.body;
         const senderId = req.user._id;
-        
-        let conversation = await Conversation.findOne({ 
-            members: { $all: [receiverId, senderId] } 
+
+        let conversation = await Conversation.findOne({
+            members: { $all: [receiverId, senderId] }
         });
 
         if (!conversation) {
-            conversation = await Conversation.create({ 
-                members: [receiverId, senderId] 
+            conversation = await Conversation.create({
+                members: [receiverId, senderId]
             });
         }
 
-        const newMessage = await Message({
+        const newMessage = await Message.create({
             senderId,
             receiverId,
             message
-        })
+        });
 
         if (newMessage) {
             conversation.messages.push(newMessage._id);
         }
 
-        //socketIO functionnality here
-
         await Promise.all([conversation.save(), newMessage.save()]);
 
-        res.status(200).json({ message: newMessage });
-        
+        res.status(200).json({
+            _id: newMessage._id,
+            senderId: newMessage.senderId,
+            receiverId: newMessage.receiverId,
+            message: newMessage.message,
+            createdAt: newMessage.createdAt,
+        });
+
     } catch (error) {
         console.log("error in sendMessage controller", error);
         res.status(500).json({ error: 'internal server error' });
     }
-}
+};
 
 export const getMessages = async (req, res) => {
     try {

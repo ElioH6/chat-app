@@ -59,21 +59,21 @@ export const login = async (req, res) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        generateToken(user._id, res);
+        generateToken(user, res);
 
-        res.status(200).json({ 
+        res.status(200).json({
             _id: user._id,
             fullName: user.fullName,
             username: user.username,
-            profilePic: user.profilePic
-         });
+            profilePic: user.profilePic,
+            createdAt: user.createdAt,
+        });
 
     } catch (error) {
         console.log("error in login controller", error);
         res.status(500).json({ error: 'internal server error' });
     }
-}
-
+};
 
 export const logout = async (req, res) => {
     try {

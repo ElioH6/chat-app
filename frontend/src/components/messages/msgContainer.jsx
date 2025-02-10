@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Messages from './messages'
 import Msginput from './msginput'
 import { TiMessages } from "react-icons/ti";
+import { AuthContext } from '../../context/AuthContext';
 
 const MsgContainer = () => {
-  const noChat = false;
+  const { currentChat, setCurrentChat } = useContext(AuthContext);
+
+  useEffect(() => {
+    return () => setCurrentChat(null);
+  }, [setCurrentChat]);
 
   return (
     <div className='md:min-w-[450px] flex flex-col'>
-      {noChat ? (<NoChat /> ) : (
+      {!currentChat ? (<NoChat /> ) : (
           <>
           <div className='bg-slate-500 px-4 py-2 mb-2'>
               <span className='label text-gray-300'>To:</span>
-              <span className='textgray-900 font-bold mx-2'>John Doe</span>
+              <span className='textgray-900 font-bold mx-2'>{currentChat.username}</span>
           </div>
 
           <Messages />

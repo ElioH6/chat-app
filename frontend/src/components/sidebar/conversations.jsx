@@ -1,20 +1,42 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Convo from './convo'
+import Loading from '../loading/loading';
 
 const Conversations = () => {
+  const [Conversations, setConversations] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchConversations = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/users/allUsers', {
+          method: 'GET',
+          credentials: 'include',
+        });
+        if (!res.ok) {
+          setLoading(false);
+          throw new Error(res.statusText);
+        }
+        const data = await res.json();
+        setConversations(data);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchConversations();
+  }, [])
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className='py-2 flex flex-col overflow-auto text-white'>
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
-        <Convo />
+      {Conversations.map((convo, index) => (<Convo key={convo._id} data={convo} lastIdx={index === Conversations.length - 1} />))}
     </div>
   )
 }
