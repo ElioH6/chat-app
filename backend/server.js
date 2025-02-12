@@ -18,7 +18,7 @@ const __dirname = path.resolve();
 
 app.use(cors(
     {
-        origin: 'http://localhost:5000',
+        origin: 'https://chat-app-vjyw.onrender.com',
         credentials: true,
     }
 ));
