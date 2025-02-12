@@ -3,11 +3,13 @@ import Msg from './msg';
 import { AuthContext } from '../../context/AuthContext';
 import Loading from '../loading/loading';
 import { TiMessages } from 'react-icons/ti';
+import listenMsg from '../../hooks/listenMsg';
 
 const Messages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, currentChat } = useContext(AuthContext);
   const lastMsgRef = useRef(null);
+  listenMsg();
 
   useEffect(() => {
     lastMsgRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -51,12 +53,16 @@ const Messages = () => {
     return <Loading />;
   }
 
+  const filteredMessages = messages.filter(
+    (msg) => msg.senderId === currentChat._id || msg.receiverId === currentChat._id
+  );
+  
   return (
     <div className='px-4 flex-1 overflow-auto'>
-      {messages.length === 0 ? (
+      {filteredMessages.length === 0 ? (
         <NoMsg />
       ) : (
-        messages.map((msg) => (
+        filteredMessages.map((msg) => (
           <div ref={lastMsgRef} key={msg._id} >
             <Msg msg={msg} />
           </div>

@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../../context/AuthContext';
+import { useSocket } from '../../context/socketContext';
 
 const Convo = ({data, lastIdx}) => {
     const { currentChat, setCurrentChat } = useContext(AuthContext);
+    const { onlineUsers } = useSocket();
+    const isOnline = onlineUsers.includes(data._id);
+
     const selected = currentChat?._id === data._id
 
   return (
@@ -10,7 +14,7 @@ const Convo = ({data, lastIdx}) => {
     <div className={`flex gap-2 items-center hover:bg-info rounded p-2 py-1 cursor-pointer ${selected ? 'bg-info' : ''}`}
         onClick={() => setCurrentChat(data)}
     >
-        <div className='avatar avatar-online'>
+        <div className={`avatar ${isOnline ? 'avatar-online' : 'avatar-offline'}`}>
             <div className='w-12 rounded-full'>
                 <img src={data.profilePic} alt=""></img>
             </div>
