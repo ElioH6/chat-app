@@ -19,7 +19,7 @@ const Messages = () => {
     const fetchMessages = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://localhost:5000/message/${currentChat._id}`, {
+        const res = await fetch(`/message/${currentChat._id}`, {
           method: 'GET',
           credentials: 'include',
         });

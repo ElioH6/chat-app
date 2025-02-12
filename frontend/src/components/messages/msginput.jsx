@@ -12,7 +12,7 @@ const Msginput = () => {
 
     setLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/message/send/${currentChat._id}`, {
+      const res = await fetch(`/message/send/${currentChat._id}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

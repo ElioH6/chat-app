@@ -9,7 +9,7 @@ const Conversations = () => {
   useEffect(() => {
     const fetchConversations = async () => {
       try {
-        const res = await fetch('http://localhost:5000/users/allUsers', {
+        const res = await fetch('/users/allUsers', {
           method: 'GET',
           credentials: 'include',
         });

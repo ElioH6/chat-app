@@ -8,7 +8,7 @@ const Logout = () => {
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      const res = await fetch('http://localhost:5000/auth/logout', {
+      const res = await fetch('/auth/logout', {
         method: 'GET',
         credentials: 'include'
       })

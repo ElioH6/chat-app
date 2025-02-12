@@ -12,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await fetch('http://localhost:5000/users/loggedUser', {
+                const res = await fetch('/users/loggedUser', {
                     method: 'GET',
                     credentials: 'include',
                 });
