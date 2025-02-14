@@ -40,3 +40,15 @@ body {
     transform: translate3d(4px, 0, 0);
   }
 }
+
+@media (max-width: 767px) {
+  .mobile-fixed-height {
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
+@supports (--css: variables) {
+  html {
+    --vh: 1vh;
+  }
+}
