@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import Convo from './convo'
+import React, { useEffect, useState } from 'react';
+import Convo from './convo';
 import Loading from '../loading/loading';
 
 const Conversations = () => {
@@ -28,7 +28,7 @@ const Conversations = () => {
       }
     };
     fetchConversations();
-  }, [])
+  }, []);
 
   if (loading) {
     return <Loading />;
@@ -36,9 +36,11 @@ const Conversations = () => {
 
   return (
     <div className='py-2 flex flex-col overflow-auto text-white'>
-      {Conversations.map((convo, index) => (<Convo key={convo._id} data={convo} lastIdx={index === Conversations.length - 1} />))}
+      {Conversations.map((convo, index) => (
+        <Convo key={convo._id} data={convo} lastIdx={index === Conversations.length - 1} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Conversations
+export default Conversations;
