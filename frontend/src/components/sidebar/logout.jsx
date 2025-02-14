@@ -6,9 +6,11 @@ import { useNavigate } from 'react-router-dom';
 const Logout = () => {
   const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
   const handleLogout = async () => {
     try {
-      const res = await fetch('/auth/logout', {
+      const res = await fetch(`${API_BASE_URL}/auth/logout`, {
         method: 'GET',
         credentials: 'include'
       })

@@ -6,31 +6,28 @@ import { AuthContext } from '../../context/AuthContext';
 
 const MsgContainer = () => {
   const { currentChat, setCurrentChat } = useContext(AuthContext);
-  const isMobile = window.innerWidth <= 640; // Check if mobile screen
+  const isMobile = window.innerWidth <= 767;
 
   return (
-    <div className='md:min-w-[450px] flex flex-col'>
+    <div className='md:min-w-[450px] w-screen flex flex-col'>
       {!currentChat ? (
         <NoChat />
       ) : (
         <>
-          {/* Back button for mobile */}
           {isMobile && (
             <button
               onClick={() => setCurrentChat(null)}
-              className='p-2 bg-slate-500 text-white mb-2'
+              className='p-2 btn btn-info mb-2 text-white'
             >
               Back to Conversations
             </button>
           )}
 
-          {/* Chat header */}
           <div className='bg-slate-500 px-4 py-2 mb-2'>
             <span className='label text-gray-300'>To:</span>
             <span className='text-gray-900 font-bold mx-2'>{currentChat.username}</span>
           </div>
 
-          {/* Messages and input */}
           <Messages />
           <Msginput />
         </>

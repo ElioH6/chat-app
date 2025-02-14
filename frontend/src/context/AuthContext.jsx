@@ -8,11 +8,13 @@ export const AuthContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await fetch('/users/loggedUser', {
+                const res = await fetch(`${API_BASE_URL}/users/loggedUser`, {
                     method: 'GET',
                     credentials: 'include',
                 });

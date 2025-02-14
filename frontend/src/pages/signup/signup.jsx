@@ -43,9 +43,10 @@ const Signup = () => {
         if (password.length < 8) {
             return;
         }
+        const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
         try {
-            const res = await fetch("/auth/register", {
+            const res = await fetch(`${API_BASE_URL}/auth/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

@@ -6,13 +6,15 @@ const Msginput = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, currentChat } = useContext(AuthContext);
   const [message, setMessage] = useState('');
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message) return;
 
     setLoading(true);
     try {
-      const res = await fetch(`/message/send/${currentChat._id}`, {
+      const res = await fetch(`${API_BASE_URL}/message/send/${currentChat._id}`, {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"

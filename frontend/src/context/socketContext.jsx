@@ -12,10 +12,11 @@ export const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
     const [onlineUsers, setOnlineUsers] = useState([]);
     const { auth } = useContext(AuthContext);
+    const VITE_SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://chat-app-vjyw.onrender.com';
 
     useEffect(() => {
         if (auth) {
-            const socket = io("https://chat-app-vjyw.onrender.com", {
+            const socket = io(VITE_SOCKET_URL, {
                 query: {
                     userId: auth.id,
                 },

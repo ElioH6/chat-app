@@ -9,6 +9,7 @@ const Messages = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, currentChat } = useContext(AuthContext);
   const lastMsgRef = useRef(null);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
   listenMsg();
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const Messages = () => {
     const fetchMessages = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/message/${currentChat._id}`, {
+        const res = await fetch(`${API_BASE_URL}/message/${currentChat._id}`, {
           method: 'GET',
           credentials: 'include',
         });

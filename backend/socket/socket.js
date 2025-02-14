@@ -5,10 +5,11 @@ import express from "express";
 const app = express();
 
 const server = http.createServer(app);
+const SOCKET_URL = process.env.CLIENT_URL
 
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:5173"],
+        origin: [SOCKET_URL, "http://localhost:5000", "https://chat-app-vjyw.onrender.com", "http://localhost:5173"],
         methods: ["GET", "POST"],
     }
 });

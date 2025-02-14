@@ -7,10 +7,11 @@ const Search = () => {
   const [search, setSearch] = useState('');
   const { currentChat, setCurrentChat } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
   const findUsers = async () => {
     try {
-      const res = await fetch('/users/allUsers', {
+      const res = await fetch(`${API_BASE_URL}/users/allUsers`, {
         method: 'GET',
         credentials: 'include',
       });
