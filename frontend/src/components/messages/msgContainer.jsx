@@ -9,7 +9,7 @@ const MsgContainer = () => {
   const isMobile = window.innerWidth <= 767;
 
   return (
-    <div className='md:min-w-[450px] w-screen flex flex-col'>
+    <div className="md:min-w-[450px] w-screen flex flex-col h-full">
       {!currentChat ? (
         <NoChat />
       ) : (
@@ -17,19 +17,21 @@ const MsgContainer = () => {
           {isMobile && (
             <button
               onClick={() => setCurrentChat(null)}
-              className='p-2 btn btn-info mb-2 text-white'
+              className="p-2 btn btn-error mb-2 text-white self-start"
             >
               Back to Conversations
             </button>
           )}
 
-          <div className='bg-slate-500 px-4 py-2 mb-2'>
-            <span className='label text-gray-300'>To:</span>
-            <span className='text-gray-900 font-bold mx-2'>{currentChat.username}</span>
+          <div className="bg-slate-500 px-4 py-2 mb-2">
+            <span className="label text-gray-300">To:</span>
+            <span className="text-gray-900 font-bold mx-2">{currentChat.username}</span>
           </div>
 
-          <Messages />
-          <Msginput />
+          <div className="flex-1 overflow-y-auto">
+            <Messages />
+            <Msginput />
+          </div>
         </>
       )}
     </div>
