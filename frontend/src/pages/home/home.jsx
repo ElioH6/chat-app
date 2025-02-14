@@ -17,7 +17,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className='flex justify-center w-screen sm:h-[450px] md:h-[550px] p-6 rounded-lg shadow-md bg-gray-400/0 backdrop-filter backdrop-blur-lg border border-gray-100/10'>
+    <div className='flex justify-center w-screen h-[100%] md:h-[550px] p-6 rounded-lg shadow-md bg-gray-400/0 backdrop-filter backdrop-blur-lg border border-gray-100/10'>
       {(!currentChat || !isMobile) && <Sidebar />}
       {(currentChat || !isMobile) && <MsgContainer />}
     </div>

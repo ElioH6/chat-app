@@ -9,7 +9,7 @@ const MsgContainer = () => {
   const isMobile = window.innerWidth <= 767;
 
   return (
-    <div className="md:min-w-[450px] w-screen flex flex-col h-full">
+    <div className="md:min-w-[450px] w-screen lg:w-1/2 flex flex-col h-full">
       {!currentChat ? (
         <NoChat />
       ) : (
